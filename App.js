@@ -14,7 +14,7 @@ const App = () => {
    <SafeAreaView style={styles.root}>
     <Login />
     {/* <Register/> */}
-    <ForgotPassword />
+    {/* <ForgotPassword /> */}
     {/* <Notas /> */}
     {/* <Favoritos /> */}
     {/* <ResetPassword /> */}

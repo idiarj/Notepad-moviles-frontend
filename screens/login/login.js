@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'expo-router';
 import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import CustomInput from '../../components/Input/CustomInput';  
 import CustomButton from '../../components/Button/CustomButton'; 
 import login from '../../assets/login.jpg'; 
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
-// import axios from 'axios';
 
 
 const Login = () => {
@@ -33,11 +33,25 @@ const Login = () => {
         }
     }
 
+    const navigationView = () => (
+        <View style={[styles.container, styles.navigationContainer]}>
+          <Text style={styles.paragraph}>I'm in the Drawer!</Text>
+          <Button
+            title="Close drawer"
+            onPress={() => drawer.current.closeDrawer()}
+          />
+        </View>
+    );
+
     return (
         <ImageBackground source={login} style={styles.background}>
             <View style={styles.container}>
 
+                
                 <Text style={styles.title}>DAILY DIARIES</Text>
+
+                <Link href="/about" style={styles.navigationLink}>about</Link>
+ 
 
                 <Text style={styles.subTitle}>Iniciar sesión</Text>
 
