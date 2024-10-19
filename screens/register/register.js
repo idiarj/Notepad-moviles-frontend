@@ -3,6 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, Alert } from 'react-native';
 import CustomInput from '../../components/Input/CustomInput';  
 import CustomButton from '../../components/Button/CustomButton';
 import register from '../../assets/register.jpg';
+import { Link } from 'expo-router';
 
 const Register = () => {
     const [nombre, setNombre] = useState('');
@@ -68,10 +69,8 @@ const Register = () => {
 
                 <CustomButton text="Registrarse" onPress={onSingUpPressed}/>
 
-
-                <Text style={styles.signInText}>
-                    ¿Tienes cuenta? <Text style={styles.signInLink}>Iniciar sesión aquí</Text>
-                </Text>
+                <Link href="/login" style={styles.signInLink}>Iniciar sesión</Link>
+                
             </View>
         </ImageBackground>
     );
