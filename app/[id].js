@@ -1,11 +1,13 @@
-import { Text, View } from "react-native-web";
+import { Text, View } from "react-native"; // Cambia de react-native-web a react-native
 import { Link } from "expo-router";
 
 export default function Detail() {
     return (
         <View>
             <Text>Notepad-moviles</Text>
-         <Link to="/login" className='text-blue-400'>ir al about</Link>
+            <Link href="/login">
+                <Text style={{ color: 'blue' }}>Ir al about</Text>
+            </Link>
         </View>
     );
-}   
+}

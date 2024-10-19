@@ -1,5 +1,6 @@
-import {Login} from '../screens/login/login';
+import Login from '../screens/login/login';
 
 
 export default function Index() {
-    return <Login />;}
+    return <Login />;
+}
