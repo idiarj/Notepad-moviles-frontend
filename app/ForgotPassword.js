@@ -37,11 +37,9 @@ const ForgotPassword = () => {
 
                     <CustomButton text="Enviar" onPress={onSendPressed} />
                     </View>
-                    <CustomButton
-                        text="Volver al inicio"
-                        onPress={() => navigation.navigate("Login")}
-                        style={{ backgroundColor: "transparent" }}
-                    />
+                   
+                    <Link href="/login" style={styles.signInLink}>Volver al inicio</Link>
+
                 </View>
             </ScrollView>
         </ImageBackground>
@@ -92,6 +90,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         maxHeight: 40, // Asegura que la altura máxima sea 40
         overflow: 'hidden', // Oculta el contenido que exceda la altura
+    },
+    signInLink: {
+        color: 'white',
+        marginLeft: 138,
+        fontSize: 16,
+        fontFamily:'Garet',
+        textDecorationLine: 'underline',
     },
 });
 
