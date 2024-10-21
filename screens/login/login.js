@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'expo-router';
 import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import CustomInput from '../../components/Input/CustomInput';  
 import CustomButton from '../../components/Button/CustomButton'; 
 import login from '../../assets/login.jpg'; 
-import ForgotPassword from '../ForgotPassword/ForgotPassword';
-
+import { Link } from 'expo-router';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -13,7 +11,7 @@ const Login = () => {
 
     async function onSingInPressed() {
         try {
-            const response = await fetch('http://192.168.0.103:3000/user/login', {
+            const response = await fetch('http://172.20.10.9:3000/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,25 +31,14 @@ const Login = () => {
         }
     }
 
-    const navigationView = () => (
-        <View style={[styles.container, styles.navigationContainer]}>
-          <Text style={styles.paragraph}>I'm in the Drawer!</Text>
-          <Button
-            title="Close drawer"
-            onPress={() => drawer.current.closeDrawer()}
-          />
-        </View>
-    );
+
 
     return (
         <ImageBackground source={login} style={styles.background}>
             <View style={styles.container}>
 
                 
-                <Text style={styles.title}>DAILY DIARIES</Text>
-
-                <Link href="/about" style={styles.navigationLink}>about</Link>
- 
+                <Text style={styles.title}>DAILY DIARIES</Text> 
 
                 <Text style={styles.subTitle}>Iniciar sesión</Text>
 
@@ -67,13 +54,18 @@ const Login = () => {
                     secureTextEntry
                 />
 
+                <Link href="/notas">
                 <CustomButton text="Acceder" onPress={onSingInPressed}/>
+                </Link>
               
-                <Text style={styles.ForgotPassword}>¿Olvidaste tu contraseña?           <Text style={styles.signInLink}>Ingresa aquí</Text></Text>
+                <Link href="/forgotPassword">
+                <Text style={styles.ForgotPassword}>¿Olvidaste tu contraseña?<Text style={styles.signInLink}>Ingresa aquí</Text></Text>
+                </Link>
 
-                <Text style={styles.signInText}>
-                    ¿No tienes cuenta?                  <Text style={styles.signInLink}>Regístrate aquí</Text>
-                </Text>
+                <Link href="/register">
+                    <Text style={styles.signInText}> ¿No tienes cuenta?<Text style={styles.signInLink}>Regístrate aquí</Text></Text>
+                </Link>
+
 
             </View>
         </ImageBackground>
