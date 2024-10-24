@@ -13,7 +13,7 @@ import {
     Easing, 
     StyleSheet 
 } from 'react-native';
-import CustomButton from './components/CustomButton';
+import CustomButton from '..components/CustomButton';
 import deploy from './assets/flechaMenu.png';
 import addIcon from './assets/agregar.png';
 import fileIcon from './assets/file.png';

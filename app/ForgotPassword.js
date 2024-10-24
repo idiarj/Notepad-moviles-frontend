@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
-import CustomInput from "./components/CustomInput";
-import CustomButton from "./components/CustomButton";
+import CustomInput from "..components/CustomInput";
+import CustomButton from "..components/CustomButton";
 import register from "./assets/fondo2.jpg";
 import { Link } from "expo-router";
 

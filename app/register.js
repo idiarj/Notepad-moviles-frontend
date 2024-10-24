@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert } from 'react-native';
 import register from './assets/register.jpg';
-import CustomInput from './components/CustomInput';
-import CustomButton from './components/CustomButton';
+import CustomInput from '..components/CustomInput';
+import CustomButton from '..components/CustomButton';
 import { Link } from 'expo-router';
 
 const Register = () => {
