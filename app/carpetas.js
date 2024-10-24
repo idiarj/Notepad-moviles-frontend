@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing } from 'react-native';
-import CustomButton from '../components/Button/CustomButton';  
-import fondo2 from '../assets/fondo2.jpg'; 
-import addIcon from '../assets/agregar.png';
-import folderIcon from '../assets/folderb.png'; // Folder icon
-import fileICon from '../assets/file.png';
-import favoriteICon from '../assets/star.png';
-import deploy from '../assets/flechaMenu.png';
-import deleteIcon from '../assets/eliminar2.png';
+import CustomButton from './components/CustomButton';
+import folderIcon from './assets/folderb.png';
+import addIcon from './assets/agregar.png';
+import fondo2 from './assets/fondo2.jpg';
+import deploy from './assets/flechaMenu.png';
+import fileICon from './assets/file.png';
+import favoriteICon from './assets/star.png';
+
 
 const Carpetas = ({ navigation }) => {
     const [folders, setFolders] = useState([]); // Folder state

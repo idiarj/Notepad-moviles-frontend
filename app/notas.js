@@ -1,16 +1,30 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
-import CustomButton from '../components/Button/CustomButton';  
-import fondo2 from '../assets/fondo2.jpg'; 
-import editIcon from '../assets/lapiz.png';
-import deleteIcon from '../assets/eliminar2.png';
-import addIcon from '../assets/agregar.png';
-import deploy from '../assets/flechaMenu.png';
-import folderIcon from '../assets/folderb.png';
-import fileICon from '../assets/file.png';
-import favoriteICon from '../assets/star.png';
-import favAdd from '../assets/favAgregado.png';
-import favNoAdd from '../assets/favSinAgregar.png';
+import { 
+    View, 
+    Text, 
+    ImageBackground, 
+    TouchableOpacity, 
+    FlatList, 
+    Alert, 
+    Image, 
+    TextInput, 
+    Modal, 
+    Animated, 
+    Easing, 
+    StyleSheet 
+} from 'react-native';
+import CustomButton from './components/CustomButton';
+import deploy from './assets/flechaMenu.png';
+import addIcon from './assets/agregar.png';
+import fileIcon from './assets/file.png';
+import folderIcon from './assets/folderb.png';
+import favoriteIcon from './assets/star.png';
+import editIcon from './assets/edit.png';
+import deleteIcon from './assets/eliminar2.png';
+import favNoAdd from './assets/favSinAgregar.png';
+import favAdd from './assets/favAgregar.png';
+import fondo2 from './assets/fondo2.jpg';
+
 import { Picker } from '@react-native-picker/picker';
 
 const Notas = ({ navigation }) => {
@@ -195,7 +209,7 @@ const Notas = ({ navigation }) => {
 
             <View style={styles.navbar}>
                 <TouchableOpacity onPress={() => navigation.navigate('carpetas')}>
-                    <Image source={fileICon} style={styles.navIcon1} />
+                    <Image source={fileIcon} style={styles.navIcon1} />
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
@@ -203,7 +217,7 @@ const Notas = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
-                    <Image source={favoriteICon} style={styles.navIcon2} />
+                    <Image source={favoriteIcon} style={styles.navIcon2} />
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.addButton}>

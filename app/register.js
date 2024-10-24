@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert } from 'react-native';
-import CustomInput from '../components/Input/CustomInput';  
-import CustomButton from '../components/Button/CustomButton';
-import register from '../assets/register.jpg';
+import register from './assets/register.jpg';
+import CustomInput from './components/CustomInput';
+import CustomButton from './components/CustomButton';
 import { Link } from 'expo-router';
 
 const Register = () => {
@@ -69,7 +69,7 @@ const Register = () => {
 
                 <CustomButton text="Registrarse" onPress={onSingUpPressed}/>
 
-                <Link href="/login" style={styles.signInLink}>Iniciar sesión</Link>
+                <Link href="/login" style={styles.signInLink}>Volver al login</Link>
                 
             </View>
         </ImageBackground>
@@ -118,9 +118,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     signInLink: {
-        color: 'blue',
+        color: 'white',
         textDecorationLine: 'underline',
-    },
+        marginLeft: 96,
+    }
 });
 
 export default Register;

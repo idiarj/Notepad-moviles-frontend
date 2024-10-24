@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
-import CustomButton from '../components/Button/CustomButton'; 
-import CustomInput from "../components/Input/CustomInput"
+import {StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
+import CustomInput from "./components/CustomInput";
+import CustomButton from "./components/CustomButton";
+import register from "./assets/fondo2.jpg";
 import { Link } from "expo-router";
-import register from '../assets/register.jpg';
 
 const ForgotPassword = () => {
     const [question, setQuestion] = useState("");
@@ -37,8 +37,8 @@ const ForgotPassword = () => {
 
                     <CustomButton text="Enviar" onPress={onSendPressed} />
                     </View>
-                   
-                    <Link href="/login" style={styles.signInLink}>Volver al inicio</Link>
+
+                    <Link href="/login" style={styles.signInLink}>Volver al login</Link>
 
                 </View>
             </ScrollView>
@@ -93,10 +93,8 @@ const styles = StyleSheet.create({
     },
     signInLink: {
         color: 'white',
-        marginLeft: 138,
-        fontSize: 16,
-        fontFamily:'Garet',
         textDecorationLine: 'underline',
+        marginLeft: 142,  
     },
 });
 

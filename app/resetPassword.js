@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
-import CustomButton from '../components/Button/CustomButton'; 
-import { Link } from "expo-router";
-import CustomInput from '../components/Input/CustomInput';  
-import register from '../assets/register.jpg';
-
+import { StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
+import CustomButton from './components/CustomButton'; 
+import CustomInput from './components/CustomInput';  
+import register from './assets/register.jpg';
 
 const ResetPassword = () => {
     const [code, setCode] = useState("");
