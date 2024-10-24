@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
-import CustomInput from '..components/CustomInput';  
-import CustomButton from '..components/CustomButton'; 
+import CustomInput from '../components/CustomInput';  
+import CustomButton from '../components/CustomButton'; 
 import login from './assets/login.jpg'; 
 import { Link } from 'expo-router';
 

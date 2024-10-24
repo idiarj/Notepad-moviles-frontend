@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing } from 'react-native';
-import CustomButton from '..components/CustomButton';
+import CustomButton from '../components/CustomButton.js';
 import folderIcon from './assets/folderb.png';
 import addIcon from './assets/agregar.png';
 import fondo2 from './assets/fondo2.jpg';
