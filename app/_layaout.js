@@ -19,7 +19,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Tus notas" component={Notas} /> {/* Asegúrate de tener una pantalla "Tus notas" */}
+          <Stack.Screen name="notas" component={Notas} /> {/* Asegúrate de tener una pantalla "Tus notas" */}
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="ResetPassword" component={ResetPassword} />

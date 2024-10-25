@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import CustomInput from '../components/CustomInput';  
 import CustomButton from '../components/CustomButton'; 
 import login from '../assets/login.jpg'; 
-import { Link, useNavigation } from 'expo-router';
+import { Link, useNavigation } from 'expo-router'; // Asegúrate de importar useNavigation desde expo-router
 import { fetchsito } from '../utils/fetchMethod';
 
 const Login = () => {
@@ -13,10 +13,10 @@ const Login = () => {
 
     async function onSingInPressed() {
         try {
-            console.log('hare el fetch')
-            console.log(username)
-            console.log(password)
-            const response = await fetch('https://notepad-moviles-backend.onrender.com/user/login',{
+            console.log('hare el fetch');
+            console.log(username);
+            console.log(password);
+            const response = await fetch('https://notepad-moviles-backend.onrender.com/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,66 +27,57 @@ const Login = () => {
                 }),
                 credentials: 'include'
             });
-            console.log('fetch hecho')
+
+            console.log('fetch hecho');
             const data = await response.json();
-            console.log(response)
-            if(response.ok){
-                navigation.navigate('notas');
-                console.log(data)
-            }else{
-                console.log(data)
+            console.log(response);
+            if (response.ok) {
+                console.log('ahora deberia llevarte a notaas');
+                navigation.navigate('notas'); // Navega a la pantalla "notas"
+                console.log(data);
+            } else {
+                console.log(data);
             }
-            console.log(data)
+            console.log(data);
         } catch (error) {
             console.error(error);
         }
     }
 
-
-        return (
-            <ImageBackground source={login} style={styles.background}>
-                <View style={styles.container}>
-        
-                    <Text style={styles.title}>DAILY DIARIES</Text> 
-        
-                    <Text style={styles.subTitle}>Iniciar sesión</Text>
-        
-                    <CustomInput
-                        value={username}
-                        setvalue={setUsername}
-                        placeholder="Correo"
-                    />
-                    <CustomInput
-                        value={password}
-                        setvalue={setPassword}
-                        placeholder="Contraseña"
-                        secureTextEntry
-                    />
-        
-                    {/* CustomButton fuera del Link */}
-                    <CustomButton 
-                        text="Acceder"
-                        onPress={onSingInPressed}
-                        style={{ marginLeft: 100 }}  // Asegúrate de que este estilo sea válido
-                    />
-        
-                    {/* Link separado para olvidaste la contraseña */}
-                    <Link href="/ForgotPassword">
-                        <Text style={styles.ForgotPassword}>
-                            ¿Olvidaste tu contraseña? <Text style={styles.signInLink}>Ingresa aquí</Text>
-                        </Text>
-                    </Link>
-        
-                    {/* Link separado para registrarse */}
-                    <Link href="/register">
-                        <Text style={styles.signInText}> 
-                            ¿No tienes cuenta? <Text style={styles.signInLink}>Regístrate aquí</Text>
-                        </Text>
-                    </Link>
-        
-                </View>
-            </ImageBackground>
-        );
+    return (
+        <ImageBackground source={login} style={styles.background}>
+            <View style={styles.container}>
+                <Text style={styles.title}>DAILY DIARIES</Text>
+                <Text style={styles.subTitle}>Iniciar sesión</Text>
+                <CustomInput
+                    value={username}
+                    setvalue={setUsername}
+                    placeholder="Correo"
+                />
+                <CustomInput
+                    value={password}
+                    setvalue={setPassword}
+                    placeholder="Contraseña"
+                    secureTextEntry
+                />
+                <CustomButton 
+                    text="Acceder"
+                    onPress={onSingInPressed}
+                    style={{ marginLeft: 100 }}  // Asegúrate de que este estilo sea válido
+                />
+                <Link href="/ForgotPassword">
+                    <Text style={styles.ForgotPassword}>
+                        ¿Olvidaste tu contraseña? <Text style={styles.signInLink}>Ingresa aquí</Text>
+                    </Text>
+                </Link>
+                <Link href="/register">
+                    <Text style={styles.signInText}> 
+                        ¿No tienes cuenta? <Text style={styles.signInLink}>Regístrate aquí</Text>
+                    </Text>
+                </Link>
+            </View>
+        </ImageBackground>
+    );
 };
 
 const styles = StyleSheet.create({
