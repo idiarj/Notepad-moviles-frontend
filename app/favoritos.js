@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
+import { View, Text, ImageBackground, Pressable, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
 import CustomButton from '../components/CustomButton';  
-import fondo2 from './assets/fondo2.jpg'; 
-import editIcon from './assets/lapiz.png';
-import deleteIcon from './assets/eliminar2.png';
-import addIcon from './assets/agregar.png';
-import deploy from './assets/flechaMenu.png';
-import folderIcon from './assets/folderb.png';
-import fileIcon from './assets/file.png';
-import favoriteIcon from './assets/star.png';
-import favNoAdd from './assets/favSinAgregar.png';
+import fondo2 from '../assets/fondo2.jpg'; 
+import editIcon from '../assets/lapiz.png';
+import deleteIcon from '../assets/eliminar2.png';
+import addIcon from '../assets/agregar.png';
+import deploy from '../assets/flechaMenu.png';
+import folderIcon from '../assets/folderb.png';
+import fileIcon from '../assets/file.png';
+import favoriteIcon from '../assets/star.png';
+import favNoAdd from '../assets/favSinAgregar.png';
 import { Picker } from '@react-native-picker/picker';
 
 const Notas = ({ navigation }) => {
@@ -85,15 +85,15 @@ const Notas = ({ navigation }) => {
                 <Text style={styles.noteText}>{item.text}</Text>
                 <Text style={styles.noteCategory}>Categoría: {item.category}</Text>
                 <View style={styles.noteActions}>
-                    <TouchableOpacity onPress={() => editNote(item.id)}>
+                    <Pressable onPress={() => editNote(item.id)}>
                         <Image source={editIcon} style={styles.icon} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => deleteNote(item.id)}>
+                    </Pressable>
+                    <Pressable onPress={() => deleteNote(item.id)}>
                         <Image source={deleteIcon} style={styles.icon} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => toggleFavorite(item.id)}>
+                    </Pressable>
+                    <Pressable onPress={() => toggleFavorite(item.id)}>
                         <Image source={isFavorite ? favAdd : favNoAdd} style={styles.icon} />
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
             </View>
         );
@@ -112,9 +112,9 @@ const Notas = ({ navigation }) => {
     return (
         <ImageBackground source={fondo2} style={styles.background}>
             <View style={styles.container}>
-                <TouchableOpacity onPress={toggleMenu} style={styles.deployContainer}>
+                <Pressable onPress={toggleMenu} style={styles.deployContainer}>
                     <Image source={deploy} style={styles.deployIcon} />
-                </TouchableOpacity>
+                </Pressable>
 
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
@@ -157,18 +157,18 @@ const Notas = ({ navigation }) => {
                     <View style={styles.fullScreenModalView}>
 
                         <View style={styles.modalButtons}>
-                            <TouchableOpacity
+                            <Pressable
                                 style={styles.customButton}
                                 onPress={addOrEditNote}
                             >
                                 <Text style={styles.customButtonText}>Guardar</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
+                            </Pressable>
+                            <Pressable
                                 style={styles.customButton1}
                                 onPress={() => setModalVisible(false)}
                             >
                                 <Text style={styles.customButtonText}>❌</Text>
-                            </TouchableOpacity>
+                            </Pressable>
                         </View>
                         <TextInput
                             style={styles.customTitleInputFullScreen}
@@ -199,21 +199,21 @@ const Notas = ({ navigation }) => {
             </Modal>
 
             <View style={styles.navbar}>
-                <TouchableOpacity onPress={() => navigation.navigate('carpetas')}>
+                <Pressable onPress={() => navigation.navigate('carpetas')}>
                     <Image source={fileIcon} style={styles.navIcon1} />
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
+                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
                     <Image source={folderIcon} style={styles.navIcon} />
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
+                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
                     <Image source={favoriteIcon} style={styles.navIcon2} />
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.addButton}>
+                <Pressable onPress={() => setModalVisible(true)} style={styles.addButton}>
                     <Image source={addIcon} style={styles.addIcon} />
-                </TouchableOpacity>
+                </Pressable>
             </View>
         </ImageBackground>
     );

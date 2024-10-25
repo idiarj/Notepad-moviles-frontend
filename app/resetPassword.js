@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native";
 import CustomButton from '../components/CustomButton'; 
 import CustomInput from '../components/CustomInput';  
-import register from './assets/register.jpg';
+import register from '../assets/register.jpg';
 
 const ResetPassword = () => {
     const [code, setCode] = useState("");

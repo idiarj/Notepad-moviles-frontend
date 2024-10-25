@@ -6,7 +6,7 @@ import Login from './app/login/login';
 import Register from './app/register/register';
 import ForgotPassword from './app/ForgotPassword/ForgotPassword'; 
 import ResetPassword from './app/resetPassword';
-import Notas from './app/notas/notas';
+import Notas from './app/notas/index';
 import Carpetas from './app/Carpetas/carpetas';
 import Favoritos from './app/Favoritos/favoritos';
 import Navigation from './navigation';
