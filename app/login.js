@@ -66,7 +66,7 @@ const Login = () => {
                     onPress={onSingInPressed}
                     style={{ marginLeft: 100 }}  // Asegúrate de que este estilo sea válido
                 />
-                <Link href="/ForgotPassword">
+                <Link href="/resetPassword">
                     <Text style={styles.ForgotPassword}>
                         ¿Olvidaste tu contraseña? <Text style={styles.signInLink}>Ingresa aquí</Text>
                     </Text>
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
         alignSelf: 'left',
     },
     signInLink: {
+        marginTop: 10,
         color: 'white',
         textDecorationLine: 'underline',
         marginLeft: 96,    

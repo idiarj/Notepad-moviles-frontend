@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native
 import CustomButton from '../components/CustomButton'; 
 import CustomInput from '../components/CustomInput';  
 import register from '../assets/register.jpg';
+import { Link } from 'expo-router';
 
 const ResetPassword = () => {
     const [code, setCode] = useState("");
@@ -36,11 +37,7 @@ const ResetPassword = () => {
                     <CustomButton text="Enviar" onPress={onSubmitPressed} />
 
                     </View>
-                    <CustomButton
-                        text="Volver al inicio"
-                        onPress={() => navigation.navigate("Login")}
-                        style={{ backgroundColor: "transparent" }}
-                    />
+                    <Link href="/login" style={styles.signInLink}>Volver al login</Link>
                 </View>
             </ScrollView>
         </ImageBackground>
@@ -77,6 +74,11 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         color: 'white',
+    },
+    signInLink: {
+        color: 'white',
+        textDecorationLine: 'underline',
+        marginLeft: 125,  
     },
 });
 
