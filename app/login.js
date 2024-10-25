@@ -4,11 +4,12 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton'; 
 import login from '../assets/login.jpg'; 
 import { Link, router, useNavigation } from 'expo-router'; // Asegúrate de importar useNavigation desde expo-router
-import { fetchsito } from '../utils/fetchMethod';
+import { fetchsito, fetchsito2 } from '../utils/fetchMethod';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigation = useNavigation();
 
     async function onSingInPressed() {
@@ -16,29 +17,24 @@ const Login = () => {
             console.log('hare el fetch');
             console.log(username);
             console.log(password);
-            const response = await fetch('https://notepad-moviles-backend.onrender.com/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                }),
-                credentials: 'include'
-            });
-
+            const response = await fetchsito2.post('/user/login', { username, password });
+            if(!username || !password){
+                setError('Por favor, llena todos los campos');
+                return
+            }
             console.log('fetch hecho');
             const data = await response.json();
             console.log(response);
             if (response.ok) {
                 console.log('ahora deberia llevarte a notaas');
+                router.replace('notas');
                 //navigation.navigate('notas'); // Navega a la pantalla "notas"
                 console.log(data);
             } else {
                 console.log(data);
+                setError(data.error);
             }
-            router.replace('notas');
+            
             console.log(data);
         } catch (error) {
             console.error(error);
@@ -61,6 +57,11 @@ const Login = () => {
                     placeholder="Contraseña"
                     secureTextEntry
                 />
+
+                <Text>
+                    {error}
+                </Text>
+
                 <CustomButton 
                     text="Acceder"
                     onPress={onSingInPressed}
