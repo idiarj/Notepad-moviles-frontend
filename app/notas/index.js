@@ -13,18 +13,18 @@ import {
     Easing, 
     StyleSheet 
 } from 'react-native';
-import { notesData } from '../data/folder/dataTesting';
-import CustomButton from '../components/CustomButton';
-import deploy from '../assets/flechaMenu.png';
-import addIcon from '../assets/agregar.png';
-import fileIcon from '../assets/file.png';
-import folderIcon from '../assets/folderb.png';
-import favoriteIcon from '../assets/star.png';
-import editIcon from '../assets/edit.png';
-import deleteIcon from '../assets/eliminar2.png';
-import favNoAdd from '../assets/favSinAgregar.png';
-import favAdd from '../assets/favAgregar.png';
-import fondo2 from '../assets/fondo2.jpg';
+import { notesData } from '../../data/folder/dataTesting';
+import CustomButton from '../../components/CustomButton';
+import deploy from '../../assets/flechaMenu.png';
+import addIcon from '../../assets/agregar.png';
+import fileIcon from '../../assets/file.png';
+import folderIcon from '../../assets/folderb.png';
+import favoriteIcon from '../../assets/star.png';
+import editIcon from '../../assets/edit.png';
+import deleteIcon from '../../assets/eliminar2.png';
+import favNoAdd from '../../assets/favSinAgregar.png';
+import favAdd from '../../assets/favAgregar.png';
+import fondo2 from '../../assets/fondo2.jpg';
 
 import { Picker } from '@react-native-picker/picker';
 
@@ -95,12 +95,14 @@ const Notas = ({ navigation }) => {
     };
 
     const renderNote = ({ item }) => {
-        const isFavorite = favoriteNotes.includes(item.id);
+        console.log(item)
+        // const isFavorite = favoriteNotes.includes(item.id);
+        const isFavorite = item.favorito;
         return (
             <View style={styles.note}>
-                <Text style={styles.noteTitle}>{item.title}</Text>
-                <Text style={styles.noteText}>{item.text}</Text>
-                <Text style={styles.noteCategory}>Categoría: {item.category}</Text>
+                <Text style={styles.noteTitle}>{item.titu_nota}</Text>
+                <Text style={styles.noteText}>{item.conte_nota}</Text>
+                <Text style={styles.noteCategory}>Categoría: {item.categoria}</Text>
                 <View style={styles.noteActions}>
                     <Pressable onPress={() => editNote(item.id)}>
                         <Image source={editIcon} style={styles.icon} />
