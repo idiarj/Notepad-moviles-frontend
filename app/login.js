@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import CustomInput from '../components/CustomInput';  
 import CustomButton from '../components/CustomButton'; 
 import login from '../assets/login.jpg'; 
-import { Link, useNavigation } from 'expo-router'; // Asegúrate de importar useNavigation desde expo-router
+import { Link, router, useNavigation } from 'expo-router'; // Asegúrate de importar useNavigation desde expo-router
 import { fetchsito } from '../utils/fetchMethod';
 
 const Login = () => {
@@ -33,11 +33,12 @@ const Login = () => {
             console.log(response);
             if (response.ok) {
                 console.log('ahora deberia llevarte a notaas');
-                navigation.navigate('notas'); // Navega a la pantalla "notas"
+                //navigation.navigate('notas'); // Navega a la pantalla "notas"
                 console.log(data);
             } else {
                 console.log(data);
             }
+            router.replace('notas');
             console.log(data);
         } catch (error) {
             console.error(error);
