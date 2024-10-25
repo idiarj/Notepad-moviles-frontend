@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing } from 'react-native';
-import CustomButton from '../../components/CustomButton.js';
-import folderIcon from '../assets/folderb.png';
-import addIcon from '../assets/agregar.png';
-import fondo2 from '../assets/fondo2.jpg';
-import deploy from '../assets/flechaMenu.png';
-import fileICon from '../assets/file.png';
-import favoriteICon from '../assets/star.png';
+import CustomButton from '../../components/CustomButton';
+import folderIcon from '../../assets/folderb.png';
+import addIcon from '../../assets/agregar.png';
+import fondo2 from '../../assets/fondo2.jpg';
+import deploy from '../../assets/flechaMenu.png';
+import fileICon from '../../assets/file.png';
+import favoriteICon from '../../assets/star.png';
 
 
 const Carpetas = ({ navigation }) => {

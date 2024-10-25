@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, ImageBackground, Pressable, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
 import CustomButton from '../../components/CustomButton';  
-import fondo2 from '../assets/fondo2.jpg'; 
-import editIcon from '../assets/lapiz.png';
-import deleteIcon from '../assets/eliminar2.png';
-import addIcon from '../assets/agregar.png';
-import deploy from '../assets/flechaMenu.png';
-import folderIcon from '../assets/folderb.png';
-import fileIcon from '../assets/file.png';
-import favoriteIcon from '../assets/star.png';
-import favNoAdd from '../assets/favSinAgregar.png';
+import fondo2 from '../../assets/fondo2.jpg'; 
+import editIcon from '../../assets/lapiz.png';
+import deleteIcon from '../../assets/eliminar2.png';
+import addIcon from '../../assets/agregar.png';
+import deploy from '../../assets/flechaMenu.png';
+import folderIcon from '../../assets/folderb.png';
+import fileIcon from '../../assets/file.png';
+import favoriteIcon from '../../assets/star.png';
+import favNoAdd from '../../assets/favSinAgregar.png';
 import { Picker } from '@react-native-picker/picker';
 
 const Notas = ({ navigation }) => {

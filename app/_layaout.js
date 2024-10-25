@@ -2,14 +2,14 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './app/login';
-import Register from './app/register';
-import ForgotPassword from './app/ForgotPassword'; 
-import ResetPassword from './app/resetPassword';
-import Notas from './app/notas/index';
-import Carpetas from './app/Carpetas/index';
-import Favoritos from './app/Favoritos/index';
-import Navigation from './navigation';
+import Login from './login';
+import Register from './register';
+import ForgotPassword from './ForgotPassword'; 
+import ResetPassword from './resetPassword';
+import Notas from './notas/index';
+import Carpetas from './Carpetas/index';
+import Favoritos from './Favoritos/index';
+//import Navigation from './navigation';
 
 const Stack = createStackNavigator();
 
