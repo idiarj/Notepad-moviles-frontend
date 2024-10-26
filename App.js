@@ -2,13 +2,14 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './app/login/login';
-import Register from './app/register/register';
-import ForgotPassword from './app/ForgotPassword/ForgotPassword'; 
+import Login from './app/login';
+import Register from './app/register';
+import ForgotPassword from './app/ForgotPassword'; 
 import ResetPassword from './app/resetPassword';
-import Notas from './app/notas/index';
-import Carpetas from './app/Carpetas/carpetas';
-import Favoritos from './app/Favoritos/favoritos';
+import Notas from './app/notas';
+import Carpetas from './app/Carpetas';
+import Favoritos from './app/Favoritos';
+import LoadingScreen from './app/LoadingScreen'; // Importa la pantalla de carga
 
 const Stack = createStackNavigator();
 
@@ -18,12 +19,13 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="notas" component={Notas} /> {/* Asegúrate de tener una pantalla "notas" */}
+          <Stack.Screen name="notas" component={Notas} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="ResetPassword" component={ResetPassword} />
           <Stack.Screen name="Folders" component={Carpetas} />
           <Stack.Screen name="Favorites" component={Favoritos} />
+          <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView> 
