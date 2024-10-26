@@ -10,7 +10,6 @@ const ForgotPassword = () => {
     const [pregunta, setQuestion] = useState("");
     const [respuesta, setAnwser] = useState("");
     const [error, setError] = useState("");
-    const { userId } = router.params;
     const navigation = useNavigation();
 
     const onSendPressed = async () => {
@@ -19,13 +18,15 @@ const ForgotPassword = () => {
                 setError("Por favor, llena todos los campos");
                 return;
             }
-            const response = await fetchsito2.post("/user/recoveryData", { userId, pregunta, respuesta });
+            console.log(pregunta, respuesta)
+            const response = await fetchsito2.post("/user/recoveryData", { pregunta, respuesta });
             const data = await response.json();
             if (response.ok) {
-                navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "login" });
+                navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "notas" });
             }else{
                 setError(data.error);
             }
+            console.log(data)
         }catch (error) {
             console.error(error);
         }
@@ -56,7 +57,7 @@ const ForgotPassword = () => {
                     <CustomButton text="Enviar" onPress={onSendPressed} />
                     </View>
 
-                    <Link href="/login" style={styles.signInLink}>Volver al login</Link>
+                    <Link href="/notas" style={styles.signInLink}>Ir a notas</Link>
 
                 </View>
             </ScrollView>
