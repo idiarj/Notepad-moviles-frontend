@@ -8,9 +8,24 @@ import { Link } from "expo-router";
 const ForgotPassword = () => {
     const [question, setQuestion] = useState("");
     const [anwser, setAnwser] = useState("");
+    const [error, setError] = useState("");
 
-    const onSendPressed = () => {
-        console.log("Send pressed");
+    const onSendPressed = async () => {
+        try {
+            if (!question || !anwser) {
+                setError("Por favor, llena todos los campos");
+                return;
+            }
+            const response = await fetchsito2.post("/user/recoveryData", { question, anwser });
+            const data = await response.json();
+            if (response.ok) {
+                router.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "Login" });
+            }else{
+                setError(data.error);
+            }
+        }catch (error) {
+            console.error(error);
+        }
     };
 
     return (

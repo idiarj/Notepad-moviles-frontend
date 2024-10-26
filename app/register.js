@@ -3,7 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, Alert } from 'react-native';
 import register from '../assets/register.jpg';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { fetchsito2 } from '../utils/fetchMethod';
 
 const Register = () => {
@@ -20,7 +20,7 @@ const Register = () => {
         return regex.test(email);
     };
 
-    const onSingUpPressed= async () => {
+    const onRegisterPressed= async () => {
         try {
             if(!nombre || !apellido || !correo || !password || !username){
                 setError('Por favor, llena todos los campos');
@@ -29,8 +29,8 @@ const Register = () => {
             const response = await fetchsito2.post('/user/register', { nombre, apellido, username, correo, password });
             const data = await response.json();
             if(response.ok){
-                router.replace('LoadingScreen', {loadingText: 'Registrando', newRoute: 'Login'});
-
+                router.navigate('LoadingScreen', {loadingText: `Espera un momento, ${username}, estamos terminando de registrarte.`, newRoute: 'Login'});
+                
             }
         } catch (error) {
             console.error(error);
@@ -77,7 +77,7 @@ const Register = () => {
 
                 <Text style={styles. signInText}>Al registrarte, confirmas que aceptas nuestros términos de uso y política de privacidad.</Text>
 
-                <CustomButton text="Registrarse" onPress={onSingUpPressed}/>
+                <CustomButton text="Registrarse" onPress={onRegisterPressed}/>
 
                 <Link href="/login" style={styles.signInLink}>Volver al login</Link>
                 
