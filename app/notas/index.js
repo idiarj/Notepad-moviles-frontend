@@ -1,18 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { 
-    View, 
-    Text, 
-    ImageBackground, 
-    Pressable, 
-    FlatList, 
-    Alert, 
-    Image, 
-    TextInput, 
-    Modal, 
-    Animated, 
-    Easing, 
-    StyleSheet 
-} from 'react-native';
+import { View, Text, ImageBackground, Pressable, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
 import { notesData } from '../../data/folder/dataTesting';
 import CustomButton from '../../components/CustomButton';
 import deploy from '../../assets/flechaMenu.png';
@@ -20,11 +7,13 @@ import addIcon from '../../assets/agregar.png';
 import fileIcon from '../../assets/file.png';
 import folderIcon from '../../assets/folderb.png';
 import favoriteIcon from '../../assets/star.png';
-import editIcon from '../../assets/edit.png';
+import editIcon from '../../assets/lapiz.png';
 import deleteIcon from '../../assets/eliminar2.png';
 import favNoAdd from '../../assets/favSinAgregar.png';
 import favAdd from '../../assets/favAgregar.png';
 import fondo2 from '../../assets/fondo2.jpg';
+import { Link } from 'expo-router';
+
 
 import { Picker } from '@react-native-picker/picker';
 
@@ -138,8 +127,17 @@ const Notas = ({ navigation }) => {
                 {/* Sliding Menu */}
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
-                        <CustomButton onPress={() => Alert.alert('Cerrar sesión')} text="CERRAR SESIÓN" bgColor="#faae97" />
-                        <CustomButton onPress={() => Alert.alert('Borrar cuenta')} text="BORRAR CUENTA" bgColor="#faae97" />
+                       <Link href="/login">
+                        <CustomButton onPress={() =>
+                         Alert.alert('Cerrar sesión')}
+                         text="CERRAR SESIÓN" 
+                         bgColor="#faae97" 
+                         style={opacity=1}/>
+                        </Link>
+                        <CustomButton onPress={() => 
+                        Alert.alert('Borrar cuenta')}
+                         text="BORRAR CUENTA"
+                          bgColor="#faae97" />
                     </Animated.View>
                 )}
 
@@ -212,18 +210,18 @@ const Notas = ({ navigation }) => {
             </Modal>
 
             <View style={styles.navbar}>
-                <Pressable onPress={() => navigation.navigate('carpetas')}>
+                <Link href="/notas">
                     <Image source={fileIcon} style={styles.navIcon1} />
-                </Pressable>
+                </Link>
 
-                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
+                <Link href="/Carpetas">
                     <Image source={folderIcon} style={styles.navIcon} />
-                </Pressable>
+                </Link>
 
-                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
-                    <Image source={favoriteIcon} style={styles.navIcon2} />
-                </Pressable>
-
+                <Link href="/Favoritos">
+                        <Image source={favoriteIcon} style={styles.navIcon2} />
+                </Link>
+                    
                 <Pressable onPress={() => setModalVisible(true)} style={styles.addButton}>
                     <Image source={addIcon} style={styles.addIcon} />
                 </Pressable>

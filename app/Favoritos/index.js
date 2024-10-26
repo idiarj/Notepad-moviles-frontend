@@ -10,6 +10,7 @@ import folderIcon from '../../assets/folderb.png';
 import fileIcon from '../../assets/file.png';
 import favoriteIcon from '../../assets/star.png';
 import favNoAdd from '../../assets/favSinAgregar.png';
+import { Link } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 
 const Notas = ({ navigation }) => {
@@ -199,18 +200,18 @@ const Notas = ({ navigation }) => {
             </Modal>
 
             <View style={styles.navbar}>
-                <Pressable onPress={() => navigation.navigate('carpetas')}>
+                <Link href="/notas">
                     <Image source={fileIcon} style={styles.navIcon1} />
-                </Pressable>
+                </Link>
 
-                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
+                <Link href="/Carpetas">
                     <Image source={folderIcon} style={styles.navIcon} />
-                </Pressable>
+                </Link>
 
-                <Pressable onPress={() => navigation.navigate('AnotherScreen')}>
-                    <Image source={favoriteIcon} style={styles.navIcon2} />
-                </Pressable>
-
+                <Link href="/Favoritos">
+                        <Image source={favoriteIcon} style={styles.navIcon2} />
+                </Link>
+                    
                 <Pressable onPress={() => setModalVisible(true)} style={styles.addButton}>
                     <Image source={addIcon} style={styles.addIcon} />
                 </Pressable>
@@ -322,8 +323,7 @@ const styles = StyleSheet.create({
         padding: 10,
         zIndex: 1,
         elevation: 5,
-    },
-    navbar: {
+    },navbar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
     },
-
+  
     navIcon1: {
         width: 50,
         height: 50,

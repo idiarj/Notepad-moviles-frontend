@@ -7,6 +7,7 @@ import fondo2 from '../../assets/fondo2.jpg';
 import deploy from '../../assets/flechaMenu.png';
 import fileICon from '../../assets/file.png';
 import favoriteICon from '../../assets/star.png';
+import { Link } from 'expo-router';
 
 
 const Carpetas = ({ navigation }) => {
@@ -143,19 +144,18 @@ const Carpetas = ({ navigation }) => {
                 </View>
             </Modal>
             <View style={styles.navbar}>
-                    <TouchableOpacity onPress={() => navigation.navigate('carpetas')}>
-                        <Image source={fileICon} style={styles.navIcon1} />
-                    </TouchableOpacity>
+                    <Link href="/notas">
+                    <Image source={fileICon} style={styles.navIcon1} />
+                    </Link>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
+                    <Link href="/Carpetas">
                         <Image source={folderIcon} style={styles.navIcon} />
-                    </TouchableOpacity>
+                    </Link>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('AnotherScreen')}>
+                    <Link href="/Favoritos">
                         <Image source={favoriteICon} style={styles.navIcon2} />
-                    </TouchableOpacity>
+                    </Link>
 
-                    {/* Button for adding folders inside the navbar */}
                     <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.addButton}>
                         <Image source={addIcon} style={styles.addIcon} />
                     </TouchableOpacity>
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
         padding: 20,
         alignItems: 'center',
         
-    },  navbar: {
+    }, navbar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         left: 0,
-    },
+    }, 
 
     deployContainer: {
         position: 'absolute',
