@@ -1,8 +1,10 @@
 import fondo2 from '../assets/fondo2.jpg';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import deploy from '../assets/flechaMenu.png';
-import { View, Text, StyleSheet, Alert, ImageBackground, TouchableOpacity, TextInput, Pressable, Image} from 'react-native';
+import CustomButton from '../components/CustomButton'; 
+import { View, Text, Animated,StyleSheet, Alert, ImageBackground, TouchableOpacity, TextInput, Pressable, Image} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 const Perfil = () => {
   const [nombre, setNombre] = useState('Nombre');
@@ -11,8 +13,7 @@ const Perfil = () => {
   const [username, setUsername] = useState('Usuario');
   const [isEditing, setIsEditing] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const [slideAnim] = useState(new Animated.Value(-100)); // valor inicial fuera de pantalla
-
+  const slideAnim = useRef(new Animated.Value(-100)).current;
 
 
   useEffect(() => {
@@ -26,29 +27,22 @@ const Perfil = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleLogout = () => {
-    Alert.alert("Cerrar sesión", "¿Estás seguro de que deseas cerrar sesión?", [
-      { text: "Cancelar", style: "cancel" },
-      { text: "Cerrar sesión", onPress: () => console.log("Sesión cerrada") },
-    ]);
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+    Animated.timing(slideAnim, {
+      toValue: menuVisible ? -100 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
   };
 
-  const toggleMenu = () => {
-    Animated.timing(slideAnim, {
-        toValue: menuVisible ? -100 : 0,
-        duration: 300,
-        easing: Easing.ease,
-        useNativeDriver: true,
-    }).start();
-    setMenuVisible(!menuVisible);
-};
 
   return (
     <ImageBackground source={fondo2} style={styles.background}>
-
-                <Pressable onPress={toggleMenu} style={styles.deployContainer}>
-                    <Image source={deploy} style={styles.deployIcon} />
-                </Pressable>
+            <TouchableOpacity onPress={toggleMenu}>
+                <Image source={deploy} style={styles.deployIcon} />
+            </TouchableOpacity>
+            <View style={styles.container}>
 
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
@@ -70,7 +64,6 @@ const Perfil = () => {
                     </Animated.View>
                 )}
 
-      <View style={styles.profileContainer}>
         <Text style={styles.title}>Perfil de Usuario</Text>
         <Ionicons name="person-circle-outline" size={100} color="white" style={styles.icon} />
 
@@ -129,11 +122,11 @@ const Perfil = () => {
           <Text style={styles.description}>
           Nuestra aplicación de notas está diseñada para ayudarte a organizar tus pensamientos, tareas y recordatorios de forma sencilla y efectiva. Con una interfaz amigable y opciones de personalización, puedes crear carpetas, agregar notas detalladas, y mantener todo ordenado en un solo lugar. Ya sea para tus ideas diarias, listas de tareas o notas importantes, esta aplicación es tu compañera ideal para mejorar tu productividad y organización.          </Text>
         </View>
+        <Text style={styles.fixedDailyDiaries}>DAILY DIARIES</Text>
 
-        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Cerrar sesión</Text>
-        </TouchableOpacity>
+
       </View>
+    
     </ImageBackground>
   );
 };
@@ -143,10 +136,10 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
-  profileContainer: {
+  container: {
     flex: 1,
+    width: '100%',
     alignItems: 'center',
-    paddingTop: 50,
   },
   title: {
     fontSize: 24,
@@ -198,6 +191,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#faae97',
   },
+  
   input: {
     borderBottomWidth: 1,
     borderBottomColor: '#dd',
@@ -242,20 +236,33 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     left: 10,
+    zIndex: 1000,
 },
 deployIcon: {
+    marginTop: 20,
+    marginLeft: 30,
     width: 40,
     height: 40,
 },
 menu: {
     position: 'absolute',
-    top: 70,
-    left: 0,
+    top: 10,
+    left: 10,
     width: 230,
     backgroundColor: '#fff',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,
+},
+
+fixedDailyDiaries: {
+    position: 'absolute',
+    bottom: 20, 
+    marginTop: 20,
+    color: 'white',
+    fontFamily: 'Garet',
+    fontSize: 35,
+    opacity: 0.3,
 },
 });
 
