@@ -21,7 +21,7 @@ const ForgotPassword = () => {
             const response = await fetchsito2.post("/user/recoveryData", { question, anwser });
             const data = await response.json();
             if (response.ok) {
-                navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "Login" });
+                navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "login" });
             }else{
                 setError(data.error);
             }
