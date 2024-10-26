@@ -39,10 +39,10 @@ const Perfil = () => {
 
   return (
     <ImageBackground source={fondo2} style={styles.background}>
-      <View style={styles.container}>
             <TouchableOpacity onPress={toggleMenu}>
                 <Image source={deploy} style={styles.deployIcon} />
             </TouchableOpacity>
+            <View style={styles.container}>
 
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
@@ -239,13 +239,15 @@ const styles = StyleSheet.create({
     zIndex: 1000,
 },
 deployIcon: {
+    marginTop: 20,
+    marginLeft: 30,
     width: 40,
     height: 40,
 },
 menu: {
     position: 'absolute',
-    top: 70,
-    left: 0,
+    top: 10,
+    left: 10,
     width: 230,
     backgroundColor: '#fff',
     borderTopRightRadius: 10,
