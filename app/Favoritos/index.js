@@ -116,19 +116,32 @@ const Notas = ({ navigation }) => {
                 <Pressable onPress={toggleMenu} style={styles.deployContainer}>
                     <Image source={deploy} style={styles.deployIcon} />
                 </Pressable>
-
                 {menuVisible && (
-                    <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
-                        <CustomButton
-                            onPress={() => Alert.alert('Cerrar sesión')}
-                            text="CERRAR SESIÓN"
-                            bgColor="#faae97"
+                    <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
+                        <Link href="/login">
+                        <View style={[styles.menuItem, { marginBottom: -10 }]}>
+                        <Text style={styles.menuButtonText}>Cerrar sesión</Text>
+                            </View>
+                        </Link>
+
+                        <CustomButton 
+                            onPress={() => Alert.alert('Borrar cuenta')} 
+                            text="Borrar cuenta" 
+                            bgColor="transparent" 
+                            fgColor="#faae97" 
                         />
-                        <CustomButton
-                            onPress={() => Alert.alert('Borrar cuenta')}
-                            text="BORRAR CUENTA"
-                            bgColor="#faae97"
-                        />
+
+                        <Link href="/Perfil">
+                            <View style={[styles.menuItem, { marginBottom: 10 }]}>
+                                <Text style={styles.menuButtonText}>Perfil</Text>
+                            </View>
+                        </Link>
+
+                        <Link href="/notas">
+                            <View style={styles.menuItem}>
+                                <Text style={styles.menuButtonText}>Inicio</Text>
+                            </View>
+                        </Link>
                     </Animated.View>
                 )}
 
@@ -314,16 +327,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
     },
-    menu: {
-        position: 'absolute',
-        top: 20,
-        left: 0,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 10,
-        padding: 10,
-        zIndex: 1,
-        elevation: 5,
-    },navbar: {
+    navbar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -418,6 +422,26 @@ const styles = StyleSheet.create({
         marginTop: -130,
         marginBottom: 20,
         marginLeft: 130,
+    },
+    menu: {
+        position: 'absolute',
+        top: 70,
+        left: 0,
+        width: 230,
+        backgroundColor: '#fff',
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        padding: 10,
+        alignItems: 'center', // Para centrar el contenido dentro del menú
+    },
+    menuItem: {
+        alignItems: 'center',  // Centra cada elemento individualmente
+        marginBottom: 10,      // Margen para separación vertical
+    },
+    menuButtonText: {
+        color: '#faae97',
+        fontSize: 18,
+        textAlign: 'center',
     },
 });
 
