@@ -103,11 +103,19 @@ const Carpetas = ({ navigation }) => {
 
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
-                        <Link href="/login">
+                        {/* <Link href="/login">
                         <View style={[styles.menuItem, { marginBottom: -10 }]}>
                         <Text style={styles.menuButtonText}>Cerrar sesión</Text>
                             </View>
-                        </Link>
+                        </Link> */}
+
+                        
+                        <CustomButton 
+                            onPress={() => Alert.alert('Cerrar Sesin')} 
+                            text="Cerrar Sesion" 
+                            bgColor="transparent" 
+                            fgColor="#faae97" 
+                        />
 
                         <CustomButton 
                             onPress={() => Alert.alert('Borrar cuenta')} 

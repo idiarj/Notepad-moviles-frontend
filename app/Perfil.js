@@ -5,6 +5,7 @@ import CustomButton from '../components/CustomButton';
 import { View, Text, Animated,StyleSheet, Alert, ImageBackground, TouchableOpacity, TextInput, Pressable, Image} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import {useNavigation} from '@react-navigation/native';
 
 const Perfil = () => {
   const [nombre, setNombre] = useState('Nombre');
@@ -14,6 +15,35 @@ const Perfil = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(-100)).current;
+
+  const navigation = useNavigation();
+  const handleLogout = async ()=>{
+      try{
+          const response = await fetchsito2.post('/user/logout');
+          if(response.ok){
+              console.log('fetch ok')
+              navigation.navigate('LoadingScreen', {loadingText: 'Cerrando sesión', newRoute: 'login'});
+          }else{
+              console.log('fetch no ok')
+          }
+      }catch(error){
+          console.error(error);
+      }
+  }
+
+  const deleteAccount = async ()=>{
+    try{
+        const response = await fetchsito2.post('/user/deleteAccount');
+        if(response.ok){
+            console.log('fetch ok')
+            navigation.navigate('LoadingScreen', {loadingText: 'Borrando cuenta', newRoute: 'login'});
+        }else{
+            console.log('fetch no ok')
+        }
+    }catch(error){
+        console.error(error);
+       }
+    }
 
 
   useEffect(() => {
@@ -46,14 +76,21 @@ const Perfil = () => {
 
             {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
-                        <Link href="/login">
-                        <View style={[styles.menuItem, { marginBottom: -10 }]}>
+
+                        {/* <View style={[styles.menuItem, { marginBottom: -10 }]}>
                         <Text style={styles.menuButtonText}>Cerrar sesión</Text>
-                            </View>
-                        </Link>
+                        </View> */}
 
                         <CustomButton 
-                            onPress={() => Alert.alert('Borrar cuenta')} 
+                            onPress={() => handleLogout()} 
+                            text="Cerrar sesion" 
+                            bgColor="transparent" 
+                            fgColor="#faae97" 
+                        />
+                        
+
+                        <CustomButton 
+                            onPress={() => deleteAccount()} 
                             text="Borrar cuenta" 
                             bgColor="transparent" 
                             fgColor="#faae97" 

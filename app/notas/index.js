@@ -13,11 +13,27 @@ import favNoAdd from '../../assets/favSinAgregar.png';
 import favAdd from '../../assets/favAgregar.png';
 import fondo2 from '../../assets/fondo2.jpg';
 import { Link } from 'expo-router';
+import {fetchsito2} from '../../utils/fetchMethod';
+import { useNavigation } from '@react-navigation/native';
 
 
 import { Picker } from '@react-native-picker/picker';
 
-const Notas = ({ navigation }) => {
+const Notas = () => {
+    const navigation = useNavigation();
+    const handleLogout = async ()=>{
+        try{
+            const response = await fetchsito2.post('/user/logout');
+            if(response.ok){
+                console.log('fetch ok')
+                navigation.navigate('LoadingScreen', {loadingText: 'Cerrando sesión', newRoute: 'login'});
+            }else{
+                console.log('fetch no ok')
+            }
+        }catch(error){
+            console.error(error);
+        }
+    }
     const [favoriteNotes, setFavoriteNotes] = useState([]); 
     const [notes, setNotes] = useState(()=> notesData ? notesData : []);
     const [newNoteTitle, setNewNoteTitle] = useState('');
@@ -32,6 +48,18 @@ const Notas = ({ navigation }) => {
     const deleteNote = (id) => {
         setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
     };
+
+    const getNotes = async () => {
+        try{
+            const response = await fetchsito2.get('/user/notes');
+            const data = await response.json();
+            if(response.ok){
+                setNotes(data);
+            }
+        }catch(error){
+            console.error(error);
+        }
+    }
 
     const editNote = (id) => {
         const noteToEdit = notes.find(note => note.id === id);
@@ -126,11 +154,18 @@ const Notas = ({ navigation }) => {
 
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
-                        <Link href="/login">
+                        {/* <Link href="/login">
                         <View style={[styles.menuItem, { marginBottom: -10 }]}>
                         <Text style={styles.menuButtonText}>Cerrar sesión</Text>
                             </View>
-                        </Link>
+                        </Link> */}
+
+                        <CustomButton 
+                            onPress={()=> handleLogout()} 
+                            text="Cerrar Sesion" 
+                            bgColor="transparent" 
+                            fgColor="#faae97" 
+                        />
 
                         <CustomButton 
                             onPress={() => Alert.alert('Borrar cuenta')} 
@@ -145,11 +180,11 @@ const Notas = ({ navigation }) => {
                             </View>
                         </Link>
 
-                        <Link href="/notas">
+                        {/* <Link href="/notas">
                             <View style={styles.menuItem}>
                                 <Text style={styles.menuButtonText}>Inicio</Text>
                             </View>
-                        </Link>
+                        </Link> */}
                     </Animated.View>
                 )}
 
