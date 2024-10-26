@@ -27,7 +27,7 @@ const Login = () => {
             console.log(response);
             if (response.ok) {
                 console.log('ahora deberia llevarte a notaas');
-                navigation.navigate('LoadingScreen', {loadingText: 'Iniciando Sesion', newRoute: 'notas'}); // Navega a la pantalla "notas"
+                navigation.navigate('LoadingScreen', {loadingText: 'Iniciando Sesion Espere un momento', newRoute: 'notas'}); // Navega a la pantalla "notas"
                 //navigation.navigate('notas'); // Navega a la pantalla "notas"
                 console.log(data);
             } else {

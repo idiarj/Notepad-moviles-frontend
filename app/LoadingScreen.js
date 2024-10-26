@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import React, { useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import register from '../assets/register.jpg';
 import {router} from 'expo-router';
 
 const LoadingScreen = () => {
@@ -12,16 +13,18 @@ const LoadingScreen = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             router.replace(newRoute);
-        }, 3000); // Espera 3 segundos antes de redirigir
+        }, 1000); // Espera 3 segundos antes de redirigir
 
         return () => clearTimeout(timer); // Limpia el temporizador cuando el componente se desmonte
     }, [navigation, newRoute]);
 
     return (
+        <ImageBackground source={register} style={styles.background}>
         <View style={styles.container}>
             {/* <Text style={styles.loadingText}>Pantalla de Carga</Text> */}
             <Text style={styles.loadingText}>{loadingText}</Text>
         </View>
+        </ImageBackground>
     );
 };
 
@@ -30,13 +33,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black', // Puedes ajustar el color de fondo si lo deseas
     },
     loadingText: {
         color: 'white',
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center', // Asegúrate de que el texto esté centrado
+    },
+    background: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
