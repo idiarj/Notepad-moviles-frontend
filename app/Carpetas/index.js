@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, FlatList, Alert, Image, TextInput, Modal, Animated, Easing } from 'react-native';
 import CustomButton from '../../components/CustomButton';
+import { foldersData } from '../../data/folder/dataTesting';
 import folderIcon from '../../assets/folderb.png';
 import addIcon from '../../assets/agregar.png';
 import fondo2 from '../../assets/fondo2.jpg';
@@ -11,7 +12,7 @@ import { Link } from 'expo-router';
 
 
 const Carpetas = ({ navigation }) => {
-    const [folders, setFolders] = useState([]); // Folder state
+    const [folders, setFolders] = useState(()=> foldersData ? foldersData : []);
     const [selectedFolder, setSelectedFolder] = useState(null); // To open folder
     const [newFolderName, setNewFolderName] = useState(''); // New folder name state
     const [newNoteName, setNewNoteName] = useState(''); // New note name state
