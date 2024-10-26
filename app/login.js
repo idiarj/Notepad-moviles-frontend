@@ -7,9 +7,9 @@ import { Link, router, useNavigation } from 'expo-router'; // Asegúrate de impo
 import { fetchsito, fetchsito2 } from '../utils/fetchMethod';
 
 const Login = () => {
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [error, setError] = useState(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigation = useNavigation();
 
     async function onSingInPressed() {
@@ -17,18 +17,17 @@ const Login = () => {
             console.log('hare el fetch');
             console.log(username);
             console.log(password);
+            const response = await fetchsito2.post('/user/login', { username, password });
             if(!username || !password){
                 setError('Por favor, llena todos los campos');
                 return
             }
-            const response = await fetchsito2.post('/user/login', { username, password });
-
             console.log('fetch hecho');
             const data = await response.json();
             console.log(response);
             if (response.ok) {
                 console.log('ahora deberia llevarte a notaas');
-                navigation.navigate('LoadingScreen', {loadingText: 'Iniciando Sesion Espere un momento', newRoute: 'notas'}); // Navega a la pantalla "notas"
+                navigation.navigate('LoadingScreen', {loadingText: 'Iniciando Sesion, Espere un momento', newRoute: 'notas'}); // Navega a la pantalla "notas"
                 //navigation.navigate('notas'); // Navega a la pantalla "notas"
                 console.log(data);
             } else {

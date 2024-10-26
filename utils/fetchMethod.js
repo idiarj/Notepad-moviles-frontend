@@ -57,4 +57,4 @@ class FetchWrapper{
 
 
 export const fetchsito1 = new FetchWrapper('https://notepad-moviles-backend.onrender.com');
-export const fetchsito2 = new FetchWrapper('http://192.168.0.103:3000')
+export const fetchsito2 = new FetchWrapper('http://192.168.0.106:3000')
