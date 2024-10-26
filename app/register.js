@@ -15,10 +15,10 @@ const Register = () => {
     const [username, setUsername] = useState('');
 
 
-    const validarCorreo = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    // const validarCorreo = (email) => {
+    //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     return regex.test(email);
+    // };
 
     const onRegisterPressed= async () => {
         try {
@@ -29,8 +29,9 @@ const Register = () => {
             const response = await fetchsito2.post('/user/register', { nombre, apellido, username, correo, password });
             const data = await response.json();
             if(response.ok){
-                router.navigate('LoadingScreen', {loadingText: `Espera un momento, ${username}, estamos terminando de registrarte.`, newRoute: 'Login'});
-                
+                router.navigate('ForgotPassword');
+            }else{
+                setError(data.error)
             }
         } catch (error) {
             console.error(error);

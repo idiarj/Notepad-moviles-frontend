@@ -3,12 +3,14 @@ import {StyleSheet, Text, ScrollView, View, ImageBackground} from "react-native"
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import register from '../assets/register.jpg';
-import { Link } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
+import {fetchsito2} from "../utils/fetchMethod";
 
 const ForgotPassword = () => {
     const [question, setQuestion] = useState("");
     const [anwser, setAnwser] = useState("");
     const [error, setError] = useState("");
+    const navigation = useNavigation();
 
     const onSendPressed = async () => {
         try {
@@ -19,7 +21,7 @@ const ForgotPassword = () => {
             const response = await fetchsito2.post("/user/recoveryData", { question, anwser });
             const data = await response.json();
             if (response.ok) {
-                router.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "Login" });
+                navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "Login" });
             }else{
                 setError(data.error);
             }

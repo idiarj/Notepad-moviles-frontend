@@ -7,9 +7,9 @@ import { Link, router, useNavigation } from 'expo-router'; // Asegúrate de impo
 import { fetchsito, fetchsito2 } from '../utils/fetchMethod';
 
 const Login = () => {
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [error, setError] = useState(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigation = useNavigation();
 
     async function onSingInPressed() {
