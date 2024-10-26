@@ -4,7 +4,7 @@ import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import register from '../assets/register.jpg';
 import { Link, router, useNavigation } from "expo-router";
-import {fetchsito2} from "../utils/fetchMethod";
+import {fetchsito1} from "../utils/fetchMethod";
 
 const ForgotPassword = () => {
     const [pregunta, setQuestion] = useState("");
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
                 return;
             }
             console.log(pregunta, respuesta)
-            const response = await fetchsito2.post("/user/recoveryData", { pregunta, respuesta });
+            const response = await fetchsito1.post("/user/recoveryData", { pregunta, respuesta });
             const data = await response.json();
             if (response.ok) {
                 navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "notas" });

@@ -4,7 +4,7 @@ import register from '../assets/register.jpg';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import { Link, router } from 'expo-router';
-import { fetchsito2 } from '../utils/fetchMethod';
+import { fetchsito1 } from '../utils/fetchMethod';
 
 const Register = () => {
     const [nombre, setNombre] = useState('');
@@ -26,7 +26,7 @@ const Register = () => {
                 setError('Por favor, llena todos los campos');
                 return;
             }
-            const response = await fetchsito2.post('/user/register', { nombre, apellido, username, correo, password });
+            const response = await fetchsito1.post('/user/register', { nombre, apellido, username, correo, password });
             const data = await response.json();
             if(response.ok){
                 router.navigate('ForgotPassword');

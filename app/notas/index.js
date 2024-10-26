@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, ImageBackground, Pressable, FlatList, Alert, Image, TextInput, Modal, Animated, Easing, StyleSheet } from 'react-native';
-import { notesData } from '../../data/folder/dataTesting';
+// import { notesData } from '../../data/folder/dataTesting';
 import CustomButton from '../../components/CustomButton';
 import deploy from '../../assets/flechaMenu.png';
 import addIcon from '../../assets/agregar.png';
@@ -13,8 +13,9 @@ import favNoAdd from '../../assets/favSinAgregar.png';
 import favAdd from '../../assets/favAgregar.png';
 import fondo2 from '../../assets/fondo2.jpg';
 import { Link } from 'expo-router';
-import {fetchsito2} from '../../utils/fetchMethod';
+import {fetchsito1} from '../../utils/fetchMethod';
 import { useNavigation } from '@react-navigation/native';
+
 
 
 import { Picker } from '@react-native-picker/picker';
@@ -23,7 +24,7 @@ const Notas = () => {
     const navigation = useNavigation();
     const handleLogout = async ()=>{
         try{
-            const response = await fetchsito2.post('/user/logout');
+            const response = await fetchsito1.post('/user/logout');
             if(response.ok){
                 console.log('fetch ok')
                 navigation.navigate('LoadingScreen', {loadingText: 'Cerrando sesión', newRoute: 'login'});
@@ -35,31 +36,44 @@ const Notas = () => {
         }
     }
     const [favoriteNotes, setFavoriteNotes] = useState([]); 
-    const [notes, setNotes] = useState(()=> notesData ? notesData : []);
+    const [notes, setNotes] = useState( []);
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteText, setNewNoteText] = useState('');
     const [newNoteCategory, setNewNoteCategory] = useState('neutral');
     const [modalVisible, setModalVisible] = useState(false);
     const [editingNoteId, setEditingNoteId] = useState(null);
     const [menuVisible, setMenuVisible] = useState(false);
+    const [reload, setReload] = useState(false);
+
+    const getNotes = async () => {
+        try{
+            const response = await fetchsito1.get('/notes/getNotes');
+            const data = await response.json();
+            if(response.ok){
+                setNotes(data.notas);
+                // setReload(!reload)
+                
+            }
+            console.log(notes)
+        }catch(error){
+            console.error(error);
+        }
+    }
     
+    useEffect( () => {
+        const fetchNotes = async ()=>{
+            await getNotes();
+        }
+        fetchNotes();
+    }, [reload])
+
     const slideAnim = useRef(new Animated.Value(-100)).current;
 
     const deleteNote = (id) => {
         setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
     };
 
-    const getNotes = async () => {
-        try{
-            const response = await fetchsito2.get('/user/notes');
-            const data = await response.json();
-            if(response.ok){
-                setNotes(data);
-            }
-        }catch(error){
-            console.error(error);
-        }
-    }
+
 
     const editNote = (id) => {
         const noteToEdit = notes.find(note => note.id === id);
@@ -84,7 +98,6 @@ const Notas = () => {
                 );
             } else {
                 const newNote = {
-                    id: Date.now().toString(),
                     title: newNoteTitle,
                     text: newNoteText,
                     category: newNoteCategory,

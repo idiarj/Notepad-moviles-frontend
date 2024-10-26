@@ -19,7 +19,7 @@ const Perfil = () => {
   const navigation = useNavigation();
   const handleLogout = async ()=>{
       try{
-          const response = await fetchsito2.post('/user/logout');
+          const response = await fetchsito1.post('/user/logout');
           if(response.ok){
               console.log('fetch ok')
               navigation.navigate('LoadingScreen', {loadingText: 'Cerrando sesión', newRoute: 'login'});
@@ -33,7 +33,7 @@ const Perfil = () => {
 
   const deleteAccount = async ()=>{
     try{
-        const response = await fetchsito2.post('/user/deleteAccount');
+        const response = await fetchsito1.post('/user/deleteAccount');
         if(response.ok){
             console.log('fetch ok')
             navigation.navigate('LoadingScreen', {loadingText: 'Borrando cuenta', newRoute: 'login'});

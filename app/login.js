@@ -4,7 +4,7 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton'; 
 import login from '../assets/login.jpg'; 
 import { Link, router, useNavigation } from 'expo-router'; // Asegúrate de importar useNavigation desde expo-router
-import { fetchsito, fetchsito2 } from '../utils/fetchMethod';
+import { fetchsito, fetchsito1 } from '../utils/fetchMethod';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const Login = () => {
             console.log('hare el fetch');
             console.log(username);
             console.log(password);
-            const response = await fetchsito2.post('/user/login', { username, password });
+            const response = await fetchsito1.post('/user/login', { username, password });
             if(!username || !password){
                 setError('Por favor, llena todos los campos');
                 return
