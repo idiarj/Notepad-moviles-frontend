@@ -124,7 +124,6 @@ const Notas = ({ navigation }) => {
                     <Image source={deploy} style={styles.deployIcon} />
                 </Pressable>
 
-                {/* Sliding Menu */}
                 {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
                         {/* <CustomButton
@@ -140,6 +139,8 @@ const Notas = ({ navigation }) => {
                         Alert.alert('Borrar cuenta')}
                          text="BORRAR CUENTA"
                           bgColor="#faae97" />
+                        <Link href="/Perfil"><Text style={{ color: '#000', marginTop: 10 }}>Perfil</Text></Link>
+                        <Link href="/notas"><Text style={{ color: '#000', marginTop: 10 }}>Inicio</Text></Link>
                     </Animated.View>
                 )}
 
