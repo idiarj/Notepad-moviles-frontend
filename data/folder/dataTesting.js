@@ -13,4 +13,18 @@ export const notesData = [
         "categoria": "Categoria 1",
         "favorito": false
       }
+
+]
+
+export const foldersData = [
+  {
+    "id": 1,
+    "nombre": "Carpeta 1",
+    "favorito": true
+  },
+  {
+    "id": 2,
+    "nombre": "Carpeta 2",
+    "favorito": false
+  }
 ]

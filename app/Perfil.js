@@ -262,7 +262,7 @@ menu: {
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,
-    alignItems: 'center', // Para centrar el contenido dentro del menú
+    alignItems: 'center',
 
 },
 menuItem: {

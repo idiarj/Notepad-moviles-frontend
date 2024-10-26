@@ -49,7 +49,7 @@ const Login = () => {
                 <CustomInput
                     value={username}
                     setvalue={setUsername}
-                    placeholder="Correo"
+                    placeholder="Usuario"
                 />
                 <CustomInput
                     value={password}
