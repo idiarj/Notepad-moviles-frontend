@@ -29,7 +29,7 @@ const Register = () => {
             const response = await fetchsito2.post('/user/register', { nombre, apellido, username, correo, password });
             const data = await response.json();
             if(response.ok){
-                router.navigate('ForgotPassword');
+                router.navigate('ForgotPassword', {userId : data.userId});
             }else{
                 setError(data.error)
             }

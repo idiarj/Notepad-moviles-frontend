@@ -7,18 +7,19 @@ import { Link, router, useNavigation } from "expo-router";
 import {fetchsito2} from "../utils/fetchMethod";
 
 const ForgotPassword = () => {
-    const [question, setQuestion] = useState("");
-    const [anwser, setAnwser] = useState("");
+    const [pregunta, setQuestion] = useState("");
+    const [respuesta, setAnwser] = useState("");
     const [error, setError] = useState("");
+    const { userId } = router.params;
     const navigation = useNavigation();
 
     const onSendPressed = async () => {
         try {
-            if (!question || !anwser) {
+            if (!pregunta || !respuesta) {
                 setError("Por favor, llena todos los campos");
                 return;
             }
-            const response = await fetchsito2.post("/user/recoveryData", { question, anwser });
+            const response = await fetchsito2.post("/user/recoveryData", { userId, pregunta, respuesta });
             const data = await response.json();
             if (response.ok) {
                 navigation.navigate("LoadingScreen", { loadingText: "Espera un momento, estamos terminando de registrarte.", newRoute: "login" });
@@ -41,13 +42,13 @@ const ForgotPassword = () => {
                    <View style={{...styles.container, width: "100%"}}>
                     <CustomInput
                         placeholder="Ingrese la pregunta"
-                        value={question}
+                        value={pregunta}
                         setvalue={setQuestion}
                         style={styles.input}
                     />
                     <CustomInput
                         placeholder="Ingrese la respuesta"
-                        value={anwser}
+                        value={respuesta}
                         setvalue={setAnwser}
                         style={styles.input}
                     />                  
