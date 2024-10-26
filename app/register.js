@@ -22,11 +22,15 @@ const Register = () => {
 
     const onSingUpPressed= async () => {
         try {
+            if(!nombre || !apellido || !correo || !password || !username){
+                setError('Por favor, llena todos los campos');
+                return;
+            }
             const response = await fetchsito2.post('/user/register', { nombre, apellido, username, correo, password });
             const data = await response.json();
             if(response.ok){
-                console.log('Registro exitoso');
-                Alert.alert('Registro exitoso');
+                router.replace('LoadingScreen', {loadingText: 'Registrando', newRoute: 'Login'});
+
             }
         } catch (error) {
             console.error(error);
@@ -61,13 +65,15 @@ const Register = () => {
                     setvalue={setCorreo} 
                     placeholder="Correo" 
                 />
-                {correoError ? <Text style={styles.errorText}>{correoError}</Text> : null}
+                {/* {correoError ? <Text style={styles.errorText}>{correoError}</Text> : null} */}
                 <CustomInput
                     value={password} 
                     setvalue={setPassword} 
                     placeholder="Contraseña" 
                     secureTextEntry 
                 />
+
+                <Text style={styles.errorText}>{Error}</Text>
 
                 <Text style={styles. signInText}>Al registrarte, confirmas que aceptas nuestros términos de uso y política de privacidad.</Text>
 
