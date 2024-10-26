@@ -126,13 +126,15 @@ const Notas = ({ navigation }) => {
 
                 {/* Sliding Menu */}
                 {menuVisible && (
-                    <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
-                       <Link href="/login">
-                        <CustomButton onPress={() =>
-                         Alert.alert('Cerrar sesión')}
-                         text="CERRAR SESIÓN" 
-                         bgColor="#faae97" 
-                         style={opacity=1}/>
+                    <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
+                        {/* <CustomButton
+                            onPress={() => Alert.alert('Cerrar sesión')}
+                            text="CERRAR SESIÓN"
+                            bgColor="#faae97"
+                            style={{ opacity: 1 }}
+                        /> */}
+                         <Link href="/login">
+                            <Text style={styles.Cerrar}>Cerrar sesión</Text>
                         </Link>
                         <CustomButton onPress={() => 
                         Alert.alert('Borrar cuenta')}
