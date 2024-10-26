@@ -9,10 +9,10 @@ const CustomButton = ({onPress, text, type= "Primary" , bgColor, fgColor}) => {
         bgColor ? {backgroundColor : bgColor} : {},
         ]}>
 
-                <Text style={[styles.Text,
-                 styles['text_${type}'],
-                 fgColor ? {color : fgColor} : {},
-                 ]}>{text}</Text>
+        <Text style={[styles.Text,
+        styles['text_${type}'],
+        fgColor ? {color : fgColor} : {}
+        ]}>{text}</Text>
 
         </Pressable>
     );
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
     Text: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 18,
     },
     Text_Tertiaty: {
         color: 'grey',

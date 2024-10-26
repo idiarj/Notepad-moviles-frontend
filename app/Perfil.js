@@ -44,23 +44,32 @@ const Perfil = () => {
             </TouchableOpacity>
             <View style={styles.container}>
 
-                {menuVisible && (
+            {menuVisible && (
                     <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }], zIndex: 1000 }]}>
-                        {/* <CustomButton
-                            onPress={() => Alert.alert('Cerrar sesión')}
-                            text="CERRAR SESIÓN"
-                            bgColor="#faae97"
-                            style={{ opacity: 1 }}
-                        /> */}
-                         <Link href="/login">
-                            <Text style={styles.Cerrar}>Cerrar sesión</Text>
+                        <Link href="/login">
+                        <View style={[styles.menuItem, { marginBottom: -10 }]}>
+                        <Text style={styles.menuButtonText}>Cerrar sesión</Text>
+                            </View>
                         </Link>
-                        <CustomButton onPress={() => 
-                        Alert.alert('Borrar cuenta')}
-                         text="BORRAR CUENTA"
-                          bgColor="#faae97" />
-                        <Link href="/Perfil"><Text style={{ color: '#000', marginTop: 10 }}>Perfil</Text></Link>
-                        <Link href="/notas"><Text style={{ color: '#000', marginTop: 10 }}>Inicio</Text></Link>
+
+                        <CustomButton 
+                            onPress={() => Alert.alert('Borrar cuenta')} 
+                            text="Borrar cuenta" 
+                            bgColor="transparent" 
+                            fgColor="#faae97" 
+                        />
+
+                        <Link href="/Perfil">
+                            <View style={[styles.menuItem, { marginBottom: 10 }]}>
+                                <Text style={styles.menuButtonText}>Perfil</Text>
+                            </View>
+                        </Link>
+
+                        <Link href="/notas">
+                            <View style={styles.menuItem}>
+                                <Text style={styles.menuButtonText}>Inicio</Text>
+                            </View>
+                        </Link>
                     </Animated.View>
                 )}
 
@@ -253,6 +262,17 @@ menu: {
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,
+    alignItems: 'center', // Para centrar el contenido dentro del menú
+
+},
+menuItem: {
+    alignItems: 'center',  
+    marginBottom: 10,      
+},
+menuButtonText: {
+    color: '#faae97',
+    fontSize: 18,
+    textAlign: 'center',
 },
 
 fixedDailyDiaries: {
